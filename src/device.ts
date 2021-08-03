@@ -62,7 +62,14 @@ export class Device {
 		this.propertyUpdates = {};
 	}
 
-	queuePropertyUpdate(propertyStatus: PropertyStatus) {
+	/**
+	 * Queues a specific propertyStatus for change
+	 * This alone does not do anything, the changes need to get transmitted to the
+	 * cocoro air api
+	 *
+	 * @param      {PropertyStatus}  propertyStatus  The property status
+	 */
+	queuePropertyUpdate(propertyStatus: PropertyStatus): void {
 		for (const property of this.properties) {
 			if (property.statusCode !== propertyStatus.statusCode) {
 				continue;
@@ -81,7 +88,13 @@ export class Device {
 		);
 	}
 
-	getProperty(statusCode: StatusCode | string) {
+	/**
+	 * Returns a property from the device if it exists, null otherwise
+	 *
+	 * @param      {(StatusCode|string)}  statusCode  The status code to query
+	 * @return     {Property|null}        The property.
+	 */
+	getProperty(statusCode: StatusCode | string): Property | null {
 		for (const property of this.properties) {
 			if (property.statusCode === statusCode) {
 				switch (property.valueType) {
@@ -98,7 +111,13 @@ export class Device {
 		return null;
 	}
 
-	getPropertyStatus(statusCode: StatusCode | string) {
+	/**
+	 * Returns a property status from the device if it exists, null otherwise
+	 *
+	 * @param      {(StatusCode|string)}  statusCode  The status code
+	 * @return     {PropertyStatus|null}  The property status.
+	 */
+	getPropertyStatus(statusCode: StatusCode | string): PropertyStatus | null {
 		for (const status of this.status) {
 			if (status.statusCode === statusCode) {
 				switch (status.valueType) {
@@ -115,6 +134,12 @@ export class Device {
 		return null;
 	}
 
+	/**
+	 * Helper method to fetch the state-object 8 from the device
+	 * This wraps getPropertyStatus, parsing and instantiating State8
+	 *
+	 * @return     {State8}  The state 8.
+	 */
 	getState8(): State8 {
 		const state8Bin = this.getPropertyStatus(
 			StatusCode.STATE_DETAIL,
@@ -123,11 +148,21 @@ export class Device {
 		return new State8(state8Bin.valueBinary.code);
 	}
 
+	/**
+	 * Gets the temperature.
+	 *
+	 * @return     {number}  The temperature.
+	 */
 	getTemperature(): number {
 		return this.getState8().temperature;
 	}
 
-	queueTemperatureUpdate(temp: number) {
+	/**
+	 * Queues a temperature update
+	 *
+	 * @param      {number}  temp    The new temperature
+	 */
+	queueTemperatureUpdate(temp: number): void {
 		const s8 = this.getState8();
 		s8.temperature = temp;
 
@@ -140,7 +175,10 @@ export class Device {
 		});
 	}
 
-	queuePowerOn() {
+	/**
+	 * Queues a power on action
+	 */
+	queuePowerOn(): void {
 		this.queuePropertyUpdate({
 			valueSingle: {
 				code: ValueSingle.POWER_ON,
@@ -150,7 +188,10 @@ export class Device {
 		});
 	}
 
-	queuePowerOff() {
+	/**
+	 * Queues a power off action
+	 */
+	queuePowerOff(): void {
 		this.queuePropertyUpdate({
 			valueSingle: {
 				code: ValueSingle.POWER_OFF,

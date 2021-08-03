@@ -25,6 +25,8 @@ export class Cocoro {
 	}
 
 	private async sendGETRequest(path) {
+		console.debug('sending get request: ', path);
+
 		return fetch(`${this.apiBase}${path}`, {
 			method: 'get',
 			headers: {
@@ -35,7 +37,7 @@ export class Cocoro {
 		});
 	}
 
-	private async sendPOSTRequest(path, body) {
+	private async sendPOSTRequest(path: string, body: Record<string, any>) {
 		console.debug('sending post request: ', path, JSON.stringify(body));
 
 		return fetch(`${this.apiBase}${path}`, {
@@ -49,7 +51,12 @@ export class Cocoro {
 		});
 	}
 
-	async login() {
+	/**
+	 * Authenticates with the Cocoro API and sets the session cookie
+	 *
+	 * @return     {Promise}  { description_of_the_return_value }
+	 */
+	async login(): Promise<Record<string, string>> {
 		const res = await this.sendPOSTRequest(
 			`/setting/login/?appSecret=${this.appSecret}&serviceName=iClub`,
 			{
@@ -127,7 +134,14 @@ export class Cocoro {
 		return devices;
 	}
 
-	async executeQueuedUpdates(device: Device) {
+	/**
+	 * Executes all queued updated on the given device and transacts them to the
+	 * Cocoro API
+	 *
+	 * @param      {Device}   device  The device
+	 * @return     {Promise}  Return object from the cocoro api
+	 */
+	async executeQueuedUpdates(device: Device): Promise<Record<string, string>> {
 		const updateMap = Object.keys(device.propertyUpdates).map(
 			(key) => device.propertyUpdates[key],
 		);
