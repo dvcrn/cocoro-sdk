@@ -1,10 +1,12 @@
 {
 	"name": "cocoro-sdk",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "",
-	"main": "index.ts",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"scripts": {
-		"format": "find src/ -iname '*.ts' | xargs organize-imports-cli && prettier src/ --write"
+		"format": "find src/ -iname '*.ts' | xargs organize-imports-cli && prettier src/ --write",
+		"prepublish": "tsc"
 	},
 	"author": "David Mohl",
 	"license": "MIT",
