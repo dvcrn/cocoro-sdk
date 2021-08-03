@@ -1,0 +1,2093 @@
+{
+	"deviceProperty": {
+		"deviceId": 21331,
+		"echonetNode": "28-xx-xx-xx-6f-e1",
+		"echonetObject": "012345",
+		"registerLevel": 3,
+		"label": "寝室のエアコン",
+		"className": "家庭用エアコン",
+		"maker": "SHARP",
+		"series": null,
+		"model": "AY-XXXX-W",
+		"place": "寝室",
+		"propertyUpdatedAt": "2021-08-02T17:40:19",
+		"property": [
+			{
+				"statusName": "動作状態",
+				"statusCode": "80",
+				"get": true,
+				"set": true,
+				"inf": true,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "ON",
+						"code": "30"
+					},
+					{
+						"name": "OFF",
+						"code": "31"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "設置場所",
+				"statusCode": "81",
+				"get": true,
+				"set": true,
+				"inf": true,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "規格 Version 情報",
+				"statusCode": "82",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "識別番号",
+				"statusCode": "83",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "瞬時消費電力計測値",
+				"statusCode": "84",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "65533",
+					"step": "1",
+					"unit": "W"
+				}
+			},
+			{
+				"statusName": "積算消費電力計測値",
+				"statusCode": "85",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "float",
+					"min": "0",
+					"max": "999999999",
+					"step": "0.001",
+					"unit": "kWh"
+				}
+			},
+			{
+				"statusName": "メーカ異常コード",
+				"statusCode": "86",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "電流制限設定",
+				"statusCode": "87",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "100",
+					"step": "1",
+					"unit": "W"
+				}
+			},
+			{
+				"statusName": "異常発生状態",
+				"statusCode": "88",
+				"get": true,
+				"set": false,
+				"inf": true,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "異常発生有",
+						"code": "41"
+					},
+					{
+						"name": "異常発生無",
+						"code": "42"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "異常内容",
+				"statusCode": "89",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "メーカコード",
+				"statusCode": "8A",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "事業場コード",
+				"statusCode": "8B",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "商品コード",
+				"statusCode": "8C",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "製造番号",
+				"statusCode": "8D",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "製造年月日",
+				"statusCode": "8E",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "節電動作設定",
+				"statusCode": "8F",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "節電動作中",
+						"code": "41"
+					},
+					{
+						"name": "通常動作中",
+						"code": "42"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "遠隔操作設定",
+				"statusCode": "93",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "公衆回線未経由操作",
+						"code": "41"
+					},
+					{
+						"name": "公衆回線経由操作",
+						"code": "42"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "現在時刻設定",
+				"statusCode": "97",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "現在年月日設定",
+				"statusCode": "98",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "電力制限設定",
+				"statusCode": "99",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "65535",
+					"step": "1",
+					"unit": "W"
+				}
+			},
+			{
+				"statusName": "積算運転時間",
+				"statusCode": "9A",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "状変アナウンスプロパティマップ",
+				"statusCode": "9D",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "Set プロパティマップ",
+				"statusCode": "9E",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "Get プロパティマップ",
+				"statusCode": "9F",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転モード設定",
+				"statusCode": "B0",
+				"get": true,
+				"set": true,
+				"inf": true,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "その他",
+						"code": "40"
+					},
+					{
+						"name": "自動",
+						"code": "41"
+					},
+					{
+						"name": "冷房",
+						"code": "42"
+					},
+					{
+						"name": "暖房",
+						"code": "43"
+					},
+					{
+						"name": "除湿",
+						"code": "44"
+					},
+					{
+						"name": "送風",
+						"code": "45"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "温度自動設定",
+				"statusCode": "B1",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "AUTO",
+						"code": "41"
+					},
+					{
+						"name": "非AUTO",
+						"code": "42"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "急速動作モード設定",
+				"statusCode": "B2",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "通常運転",
+						"code": "41"
+					},
+					{
+						"name": "急速",
+						"code": "42"
+					},
+					{
+						"name": "静音",
+						"code": "43"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "温度設定値",
+				"statusCode": "B3",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "50",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "除湿モード時相対湿度設定値",
+				"statusCode": "B4",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "100",
+					"step": "1",
+					"unit": "%"
+				}
+			},
+			{
+				"statusName": "冷房モード時温度設定値",
+				"statusCode": "B5",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "50",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "暖房モード時温度設定値",
+				"statusCode": "B6",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "50",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "除湿モード時温度設定値",
+				"statusCode": "B7",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "60",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "定格消費電力値",
+				"statusCode": "B8",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "65534",
+					"step": "1",
+					"unit": "W"
+				}
+			},
+			{
+				"statusName": "消費電流計測値",
+				"statusCode": "B9",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "float",
+					"min": "0",
+					"max": "65533",
+					"step": "0.1",
+					"unit": "A"
+				}
+			},
+			{
+				"statusName": "室内相対湿度計測値",
+				"statusCode": "BA",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "100",
+					"step": "1",
+					"unit": "%"
+				}
+			},
+			{
+				"statusName": "室内温度計測値",
+				"statusCode": "BB",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "-127",
+					"max": "125",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "ユーザリモコン温度設定値",
+				"statusCode": "BC",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "0",
+					"max": "50",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "吹き出し温度計測値",
+				"statusCode": "BD",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "-127",
+					"max": "125",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "外気温度計測値",
+				"statusCode": "BE",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"min": "-127",
+					"max": "125",
+					"step": "1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "相対温度設定値",
+				"statusCode": "BF",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "float",
+					"min": "-127",
+					"max": "125",
+					"step": "0.1",
+					"unit": "℃"
+				}
+			},
+			{
+				"statusName": "風量設定",
+				"statusCode": "A0",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "風量レベル1",
+						"code": "31"
+					},
+					{
+						"name": "風量レベル2",
+						"code": "32"
+					},
+					{
+						"name": "風量レベル3",
+						"code": "33"
+					},
+					{
+						"name": "風量レベル4",
+						"code": "34"
+					},
+					{
+						"name": "風量レベル5",
+						"code": "35"
+					},
+					{
+						"name": "風量レベル6",
+						"code": "36"
+					},
+					{
+						"name": "風量レベル7",
+						"code": "37"
+					},
+					{
+						"name": "風量レベル8",
+						"code": "38"
+					},
+					{
+						"name": "風量自動設定",
+						"code": "41"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "風向自動設定",
+				"statusCode": "A1",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "AUTO",
+						"code": "41"
+					},
+					{
+						"name": "非AUTO",
+						"code": "42"
+					},
+					{
+						"name": "上下AUTO",
+						"code": "43"
+					},
+					{
+						"name": "左右AUTO",
+						"code": "44"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "風向スイング設定",
+				"statusCode": "A3",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "風向スイングOFF",
+						"code": "31"
+					},
+					{
+						"name": "上下",
+						"code": "41"
+					},
+					{
+						"name": "左右",
+						"code": "42"
+					},
+					{
+						"name": "上下左右",
+						"code": "43"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "風向上下設定",
+				"statusCode": "A4",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "上",
+						"code": "41"
+					},
+					{
+						"name": "下",
+						"code": "42"
+					},
+					{
+						"name": "中央",
+						"code": "43"
+					},
+					{
+						"name": "上中",
+						"code": "44"
+					},
+					{
+						"name": "下中",
+						"code": "45"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "風向左右設定",
+				"statusCode": "A5",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "特殊状態",
+				"statusCode": "AA",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "通常状態",
+						"code": "40"
+					},
+					{
+						"name": "除霜状態",
+						"code": "41"
+					},
+					{
+						"name": "予熱状態",
+						"code": "42"
+					},
+					{
+						"name": "排熱状態",
+						"code": "43"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "非優先状態",
+				"statusCode": "AB",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "通常状態",
+						"code": "40"
+					},
+					{
+						"name": "非優先状態",
+						"code": "41"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "換気モード設定",
+				"statusCode": "C0",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "換気ON排気方向",
+						"code": "41"
+					},
+					{
+						"name": "換気OFF",
+						"code": "42"
+					},
+					{
+						"name": "換気ON吸気方向",
+						"code": "43"
+					},
+					{
+						"name": "換気ON吸排気方向",
+						"code": "44"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "加湿モード設定",
+				"statusCode": "C1",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "加湿ON",
+						"code": "41"
+					},
+					{
+						"name": "OFF",
+						"code": "42"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "換気風量設定",
+				"statusCode": "C2",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "換気風量レベル1",
+						"code": "31"
+					},
+					{
+						"name": "換気風量レベル2",
+						"code": "32"
+					},
+					{
+						"name": "換気風量レベル3",
+						"code": "33"
+					},
+					{
+						"name": "換気風量レベル4",
+						"code": "34"
+					},
+					{
+						"name": "換気風量レベル5",
+						"code": "35"
+					},
+					{
+						"name": "換気風量レベル6",
+						"code": "36"
+					},
+					{
+						"name": "換気風量レベル7",
+						"code": "37"
+					},
+					{
+						"name": "換気風量レベル8",
+						"code": "38"
+					},
+					{
+						"name": "換気風量自動",
+						"code": "41"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "加湿量設定",
+				"statusCode": "C4",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "加湿量レベル1",
+						"code": "31"
+					},
+					{
+						"name": "加湿量レベル2",
+						"code": "32"
+					},
+					{
+						"name": "加湿量レベル3",
+						"code": "33"
+					},
+					{
+						"name": "加湿量レベル4",
+						"code": "34"
+					},
+					{
+						"name": "加湿量レベル5",
+						"code": "35"
+					},
+					{
+						"name": "加湿量レベル6",
+						"code": "36"
+					},
+					{
+						"name": "加湿量レベル7",
+						"code": "37"
+					},
+					{
+						"name": "加湿量レベル8",
+						"code": "38"
+					},
+					{
+						"name": "加湿量自動",
+						"code": "41"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "搭載空気清浄方法",
+				"statusCode": "C6",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "空気清浄機能モード設定",
+				"statusCode": "C7",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "搭載リフレッシュ方法",
+				"statusCode": "C8",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "リフレッシュ機能モード設定",
+				"statusCode": "C9",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "搭載自己洗浄方法",
+				"statusCode": "CA",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "自己洗浄機能モード設定",
+				"statusCode": "CB",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "特別運転モード設定",
+				"statusCode": "CC",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "設定なし",
+						"code": "40"
+					},
+					{
+						"name": "衣類乾燥",
+						"code": "41"
+					},
+					{
+						"name": "結露抑制",
+						"code": "42"
+					},
+					{
+						"name": "ダニカビ抑制",
+						"code": "43"
+					},
+					{
+						"name": "強制除霜",
+						"code": "44"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "内部動作状態",
+				"statusCode": "CD",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "強制サーモモード設定",
+				"statusCode": "CE",
+				"get": false,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "通常設定",
+						"code": "40"
+					},
+					{
+						"name": "強制サーモON",
+						"code": "41"
+					},
+					{
+						"name": "強制サーモOFF",
+						"code": "42"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "空気清浄モード設定",
+				"statusCode": "CF",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "空気清浄ON",
+						"code": "41"
+					},
+					{
+						"name": "OFF",
+						"code": "42"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "ON タイマ予約設定",
+				"statusCode": "90",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "時間予約,相対時間予約共に入",
+						"code": "41"
+					},
+					{
+						"name": "予約切",
+						"code": "42"
+					},
+					{
+						"name": "時刻予約のみ入り",
+						"code": "43"
+					},
+					{
+						"name": "相対次記憶予約のみ入り",
+						"code": "44"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "ON タイマ時刻設定値",
+				"statusCode": "91",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "ON タイマ相対時間設定値",
+				"statusCode": "92",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "OFF タイマ予約設定",
+				"statusCode": "94",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueSingle",
+				"valueSingle": [
+					{
+						"name": "時間予約,相対時間予約共に入",
+						"code": "41"
+					},
+					{
+						"name": "予約切",
+						"code": "42"
+					},
+					{
+						"name": "時刻予約のみ入り",
+						"code": "43"
+					},
+					{
+						"name": "相対次記憶予約のみ入り",
+						"code": "44"
+					}
+				],
+				"valueRange": null
+			},
+			{
+				"statusName": "OFF タイマ時刻設定値",
+				"statusCode": "95",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "OFF タイマ相対時間設定値",
+				"statusCode": "96",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "エアコン基本情報",
+				"statusCode": "F0",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細",
+				"statusCode": "F1",
+				"get": true,
+				"set": false,
+				"inf": true,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "みはり設定",
+				"statusCode": "F2",
+				"get": true,
+				"set": false,
+				"inf": true,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "みはり状態",
+				"statusCode": "F3",
+				"get": true,
+				"set": false,
+				"inf": true,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細2",
+				"statusCode": "F4",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細3",
+				"statusCode": "F5",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細4",
+				"statusCode": "F6",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細5",
+				"statusCode": "F7",
+				"get": true,
+				"set": false,
+				"inf": true,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細6",
+				"statusCode": "F8",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細7",
+				"statusCode": "F9",
+				"get": true,
+				"set": true,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細8",
+				"statusCode": "FA",
+				"get": true,
+				"set": true,
+				"inf": true,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細9",
+				"statusCode": "FB",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細10",
+				"statusCode": "FC",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細11",
+				"statusCode": "FD",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細12",
+				"statusCode": "FE",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			},
+			{
+				"statusName": "運転状態詳細13",
+				"statusCode": "FF",
+				"get": true,
+				"set": false,
+				"inf": false,
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null
+			}
+		],
+		"status": [
+			{
+				"statusCode": "80",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "30"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "81",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "00"
+				}
+			},
+			{
+				"statusCode": "82",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "00004A00"
+				}
+			},
+			{
+				"statusCode": "83",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "84",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": "402"
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "85",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "float",
+					"code": "748343"
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "86",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "080000053800000000000000"
+				}
+			},
+			{
+				"statusCode": "87",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "88",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "42"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "89",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "03FF"
+				}
+			},
+			{
+				"statusCode": "8A",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "000005"
+				}
+			},
+			{
+				"statusCode": "8B",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "313034"
+				}
+			},
+			{
+				"statusCode": "8C",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "41592D4A3232532D57000000"
+				}
+			},
+			{
+				"statusCode": "8D",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "8E",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "8F",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "42"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "93",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "41"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "97",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "98",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "99",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "9A",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "9D",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "80818688898FA0A1B0B3CFF1F2F3FA"
+				}
+			},
+			{
+				"statusCode": "9E",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "80818F93A0A1B0B3CFF9FA"
+				}
+			},
+			{
+				"statusCode": "9F",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "80818284858688898A8B8C8F939D9E9FA0A1B0B3BABBBEC6CFF0F1F2F3F4F5F6F9FAFD"
+				}
+			},
+			{
+				"statusCode": "B0",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "42"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B1",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B2",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B3",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": "27"
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B4",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B5",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B6",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B7",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B8",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "B9",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "float",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "BA",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": "253"
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "BB",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": "27"
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "BC",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "BD",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "BE",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "int",
+					"code": "30"
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "BF",
+				"valueType": "valueRange",
+				"valueSingle": null,
+				"valueRange": {
+					"type": "float",
+					"code": null
+				},
+				"valueBinary": null
+			},
+			{
+				"statusCode": "A0",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "41"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "A1",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "41"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "A3",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "A4",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "A5",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "AA",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "AB",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "C0",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "C1",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "C2",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "C4",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "C6",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "02"
+				}
+			},
+			{
+				"statusCode": "C7",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "C8",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "C9",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "CA",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "CB",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "CC",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "CD",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "CE",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "CF",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": "41"
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "90",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "91",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "92",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "94",
+				"valueType": "valueSingle",
+				"valueSingle": {
+					"code": null
+				},
+				"valueRange": null,
+				"valueBinary": null
+			},
+			{
+				"statusCode": "95",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "96",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "F0",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "0413225B19004206100002000200000000000000000000000000004A50190001"
+				}
+			},
+			{
+				"statusCode": "F1",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "3042"
+				}
+			},
+			{
+				"statusCode": "F2",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "3131"
+				}
+			},
+			{
+				"statusCode": "F3",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "3131"
+				}
+			},
+			{
+				"statusCode": "F4",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "00000000"
+				}
+			},
+			{
+				"statusCode": "F5",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "00000000"
+				}
+			},
+			{
+				"statusCode": "F6",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "00000000000000000000000000099F155D000000000000000000000000000000000000000000164700000DD600001342265409005140370430001200277C807868BABAB9B9B9B9B8B8B7B6B8BAB8B9B8575755555456545150505455565454282724251E1E1C1C1C1D1E1D241E1E1515131310100F0F0F101010131010580000"
+				}
+			},
+			{
+				"statusCode": "F7",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "F8",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "F9",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "00000000000000000000000000000000020000000000FFFFFF00FFFF0000000000000000000000000000000000000000"
+				}
+			},
+			{
+				"statusCode": "FA",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "54000000000000000000000000000000010000000000010000003600000000000000010000010042010000000000000000FF000000000000000038000000000000000000000000000000000000000000"
+				}
+			},
+			{
+				"statusCode": "FB",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "FC",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "FD",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": "0401030000040000001000000057000000000000000000000000000000000000"
+				}
+			},
+			{
+				"statusCode": "FE",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			},
+			{
+				"statusCode": "FF",
+				"valueType": "valueBinary",
+				"valueSingle": null,
+				"valueRange": null,
+				"valueBinary": {
+					"code": null
+				}
+			}
+		]
+	}
+}

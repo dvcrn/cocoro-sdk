@@ -1,0 +1,42 @@
+{
+	"box": [
+		{
+			"boxId": "https://db.cloudlabs.sharp.co.jp/clpf/key/xxxx",
+			"maxFlag": false,
+			"pairingFlag": true,
+			"pairedTerminalNum": 2,
+			"timezone": "Asia/Tokyo",
+			"terminalAppInfo": [
+				{
+					"terminalAppId": "https://db.cloudlabs.sharp.co.jp/clpf/key/xxxx",
+					"appName": "spremote_i:1:2.2.15",
+					"userNumber": 0
+				}
+			],
+			"echonetData": [
+				{
+					"maker": "SHARP",
+					"series": null,
+					"model": "AY-XXXXX-W",
+					"serialNumber": null,
+					"deviceId": 21331,
+					"echonetNode": "28-xx-xx-xx-6f-e1",
+					"echonetObject": "012345",
+					"echonetAttr": "xxx",
+					"echonetProperty": "xxx",
+					"simulPerfModeFlag": false,
+					"propertyUpdatedAt": "2021-08-02T17:40:12",
+					"labelData": {
+						"id": 12345,
+						"place": "寝室",
+						"name": "寝室のエアコン",
+						"deviceType": "AIR_CON",
+						"zipCd": "12345",
+						"yomi": "しんしつのえあこん",
+						"lSubInfo": "{\"room_data\":{\"size\": 4.0, \"struct\": \"prefab\", \"unit\": \"tatami\"}}"
+					}
+				}
+			]
+		}
+	]
+}

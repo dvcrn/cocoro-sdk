@@ -1,0 +1,28 @@
+{
+  "name": "aircon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "find src/ -iname '*.ts' | xargs organize-imports-cli && prettier src/ --write"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.32.0"
+  },
+  "dependencies": {
+    "@types/node": "^16.4.10",
+    "@types/node-fetch": "^2.5.12",
+    "fetch-cookie": "^1.0.0",
+    "node-fetch": "^2.6.1",
+    "node-fetch-cookies": "^2.0.3",
+    "organize-imports-cli": "^0.8.0",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  }
+}
