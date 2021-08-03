@@ -1,13 +1,20 @@
 import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
 import {
+	BinaryPropertyStatus,
 	Property,
 	PropertyStatus,
+	RangePropertyStatus,
 	RangePropertyType,
+	SinglePropertyStatus,
+	SingleProperty,
+	RangeProperty,
+	BinaryProperty,
 	StatusCode,
 	ValueSingle,
 	ValueType,
 } from './properties';
+import { State8 } from './state';
 const fetch = fetchCookie(nodeFetch);
 
 interface DeviceInit {
@@ -74,6 +81,65 @@ export class Device {
 		);
 	}
 
+	getProperty(statusCode: StatusCode | string) {
+		for (const property of this.properties) {
+			if (property.statusCode === statusCode) {
+				switch (property.valueType) {
+					case ValueType.SINGLE:
+						return property as SingleProperty;
+					case ValueType.RANGE:
+						return property as RangeProperty;
+					case ValueType.BINARY:
+						return property as BinaryProperty;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	getPropertyStatus(statusCode: StatusCode | string) {
+		for (const status of this.status) {
+			if (status.statusCode === statusCode) {
+				switch (status.valueType) {
+					case ValueType.SINGLE:
+						return status as SinglePropertyStatus;
+					case ValueType.RANGE:
+						return status as RangePropertyStatus;
+					case ValueType.BINARY:
+						return status as BinaryPropertyStatus;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	getState8(): State8 {
+		const state8Bin = this.getPropertyStatus(
+			StatusCode.STATE_DETAIL,
+		) as BinaryPropertyStatus;
+
+		return new State8(state8Bin.valueBinary.code);
+	}
+
+	getTemperature(): number {
+		return this.getState8().temperature;
+	}
+
+	queueTemperatureUpdate(temp: number) {
+		const s8 = this.getState8();
+		s8.temperature = temp;
+
+		this.queuePropertyUpdate({
+			valueBinary: {
+				code: s8.state,
+			},
+			statusCode: StatusCode.STATE_DETAIL,
+			valueType: ValueType.BINARY,
+		});
+	}
+
 	queuePowerOn() {
 		this.queuePropertyUpdate({
 			valueSingle: {
@@ -92,25 +158,5 @@ export class Device {
 			statusCode: StatusCode.POWER,
 			valueType: ValueType.SINGLE,
 		});
-	}
-
-	queryProperty(statusCode: StatusCode | string) {
-		for (const property of this.properties) {
-			if (property.statusCode === statusCode) {
-				return property;
-			}
-		}
-
-		return null;
-	}
-
-	queryPropertyStatus(statusCode: StatusCode | string) {
-		for (const status of this.status) {
-			if (status.statusCode === statusCode) {
-				return status;
-			}
-		}
-
-		return null;
 	}
 }

@@ -6,16 +6,24 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"format": "find src/ -iname '*.ts' | xargs organize-imports-cli && prettier src/ --write",
-		"prepublish": "tsc"
+		"prepublish": "tsc",
+		"test": "jest"
 	},
 	"author": "David Mohl",
 	"license": "MIT",
 	"devDependencies": {
+		"@babel/core": "^7.14.8",
+		"@babel/preset-env": "^7.14.9",
+		"@babel/preset-typescript": "^7.14.5",
 		"@typescript-eslint/eslint-plugin": "^4.28.5",
 		"@typescript-eslint/parser": "^4.28.5",
-		"eslint": "^7.32.0"
+		"babel-jest": "^27.0.6",
+		"eslint": "^7.32.0",
+		"jest": "^27.0.6",
+		"ts-jest": "^27.0.4"
 	},
 	"dependencies": {
+		"@types/jest": "^26.0.24",
 		"@types/node": "^16.4.10",
 		"@types/node-fetch": "^2.5.12",
 		"fetch-cookie": "^1.0.0",
