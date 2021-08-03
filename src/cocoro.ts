@@ -127,6 +127,12 @@ export class Cocoro {
 					echonetObject: box.echonetData[0].echonetObject,
 					properties: properties,
 					status: status,
+
+					maker: box.echonetData[0].maker,
+					model: box.echonetData[0].model,
+					serialNumber: box.echonetData[0].serialNumber,
+
+					box: box,
 				}),
 			);
 		}
@@ -158,7 +164,7 @@ export class Cocoro {
 		};
 
 		const res = await this.sendPOSTRequest(
-			`/control/deviceControl?boxId=https://db.cloudlabs.sharp.co.jp/clpf/key/${this.appKey}&appSecret=${this.appSecret}`,
+			`/control/deviceControl?boxId=${device.box.boxId}&appSecret=${this.appSecret}`,
 			body,
 		);
 

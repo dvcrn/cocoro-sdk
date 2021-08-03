@@ -14,6 +14,7 @@ import {
 	ValueSingle,
 	ValueType,
 } from './properties';
+import { Box } from './responseTypes';
 import { State8 } from './state';
 const fetch = fetchCookie(nodeFetch);
 
@@ -25,6 +26,12 @@ interface DeviceInit {
 
 	properties: [Property];
 	status: [PropertyStatus];
+
+	maker: string;
+	model: string;
+	serialNumber: string;
+
+	box: Box;
 }
 /**
  * This class describes a device as represented by the Cocoro API
@@ -43,6 +50,11 @@ export class Device {
 	status: [PropertyStatus];
 
 	propertyUpdates: any;
+	maker: string;
+	model: string;
+	serialNumber: string;
+
+	box: Box;
 
 	constructor({
 		name,
@@ -51,6 +63,10 @@ export class Device {
 		echonetObject,
 		properties,
 		status,
+		maker,
+		model,
+		serialNumber,
+		box,
 	}: DeviceInit) {
 		this.name = name;
 		this.deviceId = deviceId;
@@ -60,6 +76,11 @@ export class Device {
 		this.status = status;
 
 		this.propertyUpdates = {};
+
+		this.maker = maker;
+		this.model = model;
+		this.serialNumber = serialNumber;
+		this.box = box;
 	}
 
 	/**
@@ -197,6 +218,27 @@ export class Device {
 				code: ValueSingle.POWER_OFF,
 			},
 			statusCode: StatusCode.POWER,
+			valueType: ValueType.SINGLE,
+		});
+	}
+
+	/**
+	 * Queues operation mode update
+	 */
+	queueOperationModeUpdate(
+		mode:
+			| ValueSingle.OPERATION_OTHER
+			| ValueSingle.OPERATION_AUTO
+			| ValueSingle.OPERATION_COOL
+			| ValueSingle.OPERATION_HEAT
+			| ValueSingle.OPERATION_DEHUMIDIFY
+			| ValueSingle.OPERATION_VENTILATION,
+	) {
+		this.queuePropertyUpdate({
+			valueSingle: {
+				code: mode,
+			},
+			statusCode: StatusCode.OPERATION_MODE,
 			valueType: ValueType.SINGLE,
 		});
 	}
