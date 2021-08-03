@@ -1,6 +1,6 @@
 # Cocoro Air SDK
 
-This is a work in progress attempt to reverse the cocoro air API from Sharp, used to control smart appliances through the internet
+This is a work in progress attempt to reverse-engineer the cocoro air API from Sharp, used to control smart appliances through the internet
 
 ## Authentication
 
