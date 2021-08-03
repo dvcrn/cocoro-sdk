@@ -164,6 +164,36 @@ export class Cocoro {
 			body,
 		);
 
+		// update existing device propertstatus to the new values
+		for (const [k, v] of Object.entries(updateMap)) {
+			for (let i = 0; i <= device.status.length; i++) {
+				if (device.status[i].statusCode === k) {
+					device.status[i] = v;
+				}
+			}
+		}
+
+		// reset property updates so they don't fire again
+		device.propertyUpdates = [];
+
 		return res.json();
+	}
+
+	/**
+	 * Fetches a specific device
+	 * Good for reloading the latest data
+	 *
+	 * @param      {Device}           device  The device
+	 * @return     {Promise<Device>}  The device.
+	 */
+	async fetchDevice(device: Device): Promise<Device> {
+		const devices = await this.queryDevices();
+		for (const d of devices) {
+			if (d.deviceId === device.deviceId) {
+				return d;
+			}
+		}
+
+		throw new Error('device does not exist');
 	}
 }

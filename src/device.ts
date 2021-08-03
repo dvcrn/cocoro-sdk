@@ -194,6 +194,18 @@ export class Device {
 	}
 
 	/**
+	 * Gets the windspeed.
+	 *
+	 * @return     {ValueSingle}  The windspeed.
+	 */
+	getWindspeed() {
+		const ws = this.getPropertyStatus(
+			StatusCode.WINDSPEED,
+		) as SinglePropertyStatus;
+		return ws.valueSingle.code;
+	}
+
+	/**
 	 * Queues a temperature update
 	 *
 	 * @param      {number}  temp    The new temperature
@@ -254,6 +266,30 @@ export class Device {
 				code: mode,
 			},
 			statusCode: StatusCode.OPERATION_MODE,
+			valueType: ValueType.SINGLE,
+		});
+	}
+
+	/**
+	 * Queues windspeed  update
+	 */
+	queueWindspeedUpdate(
+		mode:
+			| ValueSingle.WINDSPEED_LEVEL_1
+			| ValueSingle.WINDSPEED_LEVEL_2
+			| ValueSingle.WINDSPEED_LEVEL_3
+			| ValueSingle.WINDSPEED_LEVEL_4
+			| ValueSingle.WINDSPEED_LEVEL_5
+			| ValueSingle.WINDSPEED_LEVEL_6
+			| ValueSingle.WINDSPEED_LEVEL_7
+			| ValueSingle.WINDSPEED_LEVEL_8
+			| ValueSingle.WINDSPEED_LEVEL_AUTO,
+	) {
+		this.queuePropertyStatusUpdate({
+			valueSingle: {
+				code: mode,
+			},
+			statusCode: StatusCode.WINDSPEED,
 			valueType: ValueType.SINGLE,
 		});
 	}
