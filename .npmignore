@@ -1,0 +1,6 @@
+*.test.js
+*.test.ts
+jest.config.js
+.prettierrc
+.editorconfig
+dumps/

@@ -7,6 +7,7 @@
 	"scripts": {
 		"format": "find src/ -iname '*.ts' | xargs organize-imports-cli && prettier src/ --write",
 		"prepublish": "tsc",
+		"build": "tsc",
 		"test": "jest"
 	},
 	"author": "David Mohl",
@@ -20,18 +21,18 @@
 		"babel-jest": "^27.0.6",
 		"eslint": "^7.32.0",
 		"jest": "^27.0.6",
-		"ts-jest": "^27.0.4"
-	},
-	"dependencies": {
+		"ts-jest": "^27.0.4",
+		"typescript": "^4.3.5",
 		"@types/jest": "^26.0.24",
 		"@types/node": "^16.4.10",
-		"@types/node-fetch": "^2.5.12",
-		"fetch-cookie": "^1.0.0",
-		"node-fetch": "^2.6.1",
-		"node-fetch-cookies": "^2.0.3",
 		"organize-imports-cli": "^0.8.0",
 		"prettier": "^2.3.2",
 		"ts-node": "^10.1.0",
-		"typescript": "^4.3.5"
+		"@types/node-fetch": "^2.5.12"
+	},
+	"dependencies": {
+		"fetch-cookie": "^1.0.0",
+		"node-fetch": "^2.6.1",
+		"node-fetch-cookies": "^2.0.3"
 	}
 }
