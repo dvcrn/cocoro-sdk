@@ -52,3 +52,7 @@ export interface BinaryProperty {
 ```
 
 All property updates are getting batched and sent at once to the server to update the device state
+
+## License
+
+AGPL

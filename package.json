@@ -10,7 +10,7 @@
 		"test": "jest"
 	},
 	"author": "David Mohl",
-	"license": "MIT",
+	"license": "AGPL",
 	"devDependencies": {
 		"@babel/core": "^7.14.8",
 		"@babel/preset-env": "^7.14.9",
