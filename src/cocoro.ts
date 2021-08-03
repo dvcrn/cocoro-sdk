@@ -25,8 +25,6 @@ export class Cocoro {
 	}
 
 	private async sendGETRequest(path) {
-		console.debug('sending get request: ', path);
-
 		return fetch(`${this.apiBase}${path}`, {
 			method: 'get',
 			headers: {
@@ -38,8 +36,6 @@ export class Cocoro {
 	}
 
 	private async sendPOSTRequest(path: string, body: Record<string, any>) {
-		console.debug('sending post request: ', path, JSON.stringify(body));
-
 		return fetch(`${this.apiBase}${path}`, {
 			method: 'post',
 			headers: {
