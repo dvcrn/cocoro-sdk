@@ -5,6 +5,7 @@ export enum StatusCode {
 	NANOE_MODE = 'CF',
 	OPERATION_MODE = 'B0',
 	HEAT_TEMPERATURE = 'B3',
+	ROOM_TEMPERATURE = 'BB',
 }
 
 export enum ValueSingle {

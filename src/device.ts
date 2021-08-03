@@ -90,7 +90,7 @@ export class Device {
 	 *
 	 * @param      {PropertyStatus}  propertyStatus  The property status
 	 */
-	queuePropertyUpdate(propertyStatus: PropertyStatus): void {
+	queuePropertyStatusUpdate(propertyStatus: PropertyStatus): void {
 		for (const property of this.properties) {
 			if (property.statusCode !== propertyStatus.statusCode) {
 				continue;
@@ -179,6 +179,21 @@ export class Device {
 	}
 
 	/**
+	 * Gets the room temperature.
+	 *
+	 * @return     {number}  The temperature.
+	 */
+	getRoomTemperature(): number {
+		return parseInt(
+			(
+				this.getPropertyStatus(
+					StatusCode.ROOM_TEMPERATURE,
+				) as RangePropertyStatus
+			).valueRange.code,
+		);
+	}
+
+	/**
 	 * Queues a temperature update
 	 *
 	 * @param      {number}  temp    The new temperature
@@ -187,7 +202,7 @@ export class Device {
 		const s8 = this.getState8();
 		s8.temperature = temp;
 
-		this.queuePropertyUpdate({
+		this.queuePropertyStatusUpdate({
 			valueBinary: {
 				code: s8.state,
 			},
@@ -200,7 +215,7 @@ export class Device {
 	 * Queues a power on action
 	 */
 	queuePowerOn(): void {
-		this.queuePropertyUpdate({
+		this.queuePropertyStatusUpdate({
 			valueSingle: {
 				code: ValueSingle.POWER_ON,
 			},
@@ -213,7 +228,7 @@ export class Device {
 	 * Queues a power off action
 	 */
 	queuePowerOff(): void {
-		this.queuePropertyUpdate({
+		this.queuePropertyStatusUpdate({
 			valueSingle: {
 				code: ValueSingle.POWER_OFF,
 			},
@@ -234,7 +249,7 @@ export class Device {
 			| ValueSingle.OPERATION_DEHUMIDIFY
 			| ValueSingle.OPERATION_VENTILATION,
 	) {
-		this.queuePropertyUpdate({
+		this.queuePropertyStatusUpdate({
 			valueSingle: {
 				code: mode,
 			},
