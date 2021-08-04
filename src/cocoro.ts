@@ -166,7 +166,7 @@ export class Cocoro {
 
 		// update existing device propertstatus to the new values
 		for (const [k, v] of Object.entries(updateMap)) {
-			for (let i = 0; i <= device.status.length; i++) {
+			for (let i = 0; i < device.status.length; i++) {
 				if (device.status[i].statusCode === k) {
 					device.status[i] = v;
 				}

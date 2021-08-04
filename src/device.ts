@@ -24,8 +24,8 @@ interface DeviceInit {
 	echonetNode: string;
 	echonetObject: string;
 
-	properties: [Property];
-	status: [PropertyStatus];
+	properties: Property[];
+	status: PropertyStatus[];
 
 	maker: string;
 	model: string;
@@ -46,8 +46,8 @@ export class Device {
 	echonetNode: string;
 	echonetObject: string;
 
-	readonly properties: [Property];
-	status: [PropertyStatus];
+	readonly properties: Property[];
+	status: PropertyStatus[];
 
 	propertyUpdates: any;
 	maker: string;
