@@ -21,7 +21,9 @@
 export class State8 {
 	state: string;
 
-	constructor(state: string) {
+	constructor(
+		state = '0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+	) {
 		this.state = state;
 	}
 
@@ -32,10 +34,19 @@ export class State8 {
 	}
 
 	set temperature(t: number) {
+		// on setting temp, encode temp as hex into position 52,53
 		const s = this.state.split('');
 		const hextemp = (t * 2).toString(16);
 		s[52] = hextemp[0];
 		s[53] = hextemp[1];
+
+		// set position 6 to hex 2
+		s[6] = '2';
+
+		// set 0,1 to temperature + 16, don't fully understand why it's 16 higher though
+		const hextemp2 = ((t + 16) * 2).toString(16);
+		s[0] = hextemp2[0];
+		s[1] = hextemp2[1];
 
 		this.state = s.join('');
 	}

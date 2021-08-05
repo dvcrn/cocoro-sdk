@@ -17,6 +17,15 @@ test('setting and getting temp from binary', () => {
 
 	s9.temperature = 22;
 	expect(s9.temperature).toBe(22);
+
+	const statesplit = s9.state.split('');
+	expect(statesplit[6]).toBe('2');
+
+	// 22 + 16 = 38
+	// 38 * 2 = 76
+	// 76 = 0x4C
+	expect(statesplit[0]).toBe('4');
+	expect(statesplit[1]).toBe('c');
 });
 
 test('setting and getting temp from binary with uneven values', () => {

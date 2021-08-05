@@ -66,17 +66,19 @@ If something doesn't work, check how the app is doing it and replicate that
 
 ### Decoding the state object
 
-A lot of things are changeable just by their own properties, but some things aren't. There are a few big state objects like `FA` that look like this: 
+A lot of things are changeable just by their own properties, but some things aren't. There are a few big state objects like `FA` that look like this:
 
 ```
 55000020000000000000000000000000010000000000010000003500000000000000010000010042010000000000000000FF000000000000000038000000000000000000000000000000000000000000
 ```
 
-Position 52,53 contain the hex-encoded temperature multiplied by 2 (since the app allows 0.5 degree steps). I started decoding this in `state.ts`, but temperature is the only thing that's being available in this SDK yet. 
+Position 52,53 contain the hex-encoded temperature multiplied by 2 (since the app allows 0.5 degree steps). I started decoding this in `state.ts`, but temperature is the only thing that's being available in this SDK yet.
 
 Swing is also encoded in this state object.
 
-`F4` towards `FF` are labeled `運転状態詳細1` ~ `1運転状態詳細13` by the API (`FA` is `8`), most of them aren't used for the aircon I own but for yours they might :D 
+`F4` towards `FF` are labeled `運転状態詳細1` ~ `1運転状態詳細13` by the API (`FA` is `8`), most of them aren't used for the aircon I own but for yours they might :D
+
+(When changing things, we can't change the state object as is but have to create a new one altogether.)
 
 ## License
 

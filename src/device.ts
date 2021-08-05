@@ -211,7 +211,7 @@ export class Device {
 	 * @param      {number}  temp    The new temperature
 	 */
 	queueTemperatureUpdate(temp: number): void {
-		const s8 = this.getState8();
+		const s8 = new State8();
 		s8.temperature = temp;
 
 		this.queuePropertyStatusUpdate({
