@@ -16,9 +16,12 @@ export class Cocoro {
 	private isAuthenticated: boolean;
 	private apiBase: string;
 
-	constructor(appSecret: string, appKey: string) {
+	private serviceName: string;
+
+	constructor(appSecret: string, appKey: string, serviceName = 'iClub') {
 		this.appSecret = appSecret;
 		this.appKey = appKey;
+		this.serviceName = serviceName;
 
 		this.isAuthenticated = false;
 		this.apiBase = 'https://hms.cloudlabs.sharp.co.jp/hems/pfApi/ta';
@@ -54,7 +57,7 @@ export class Cocoro {
 	 */
 	async login(): Promise<Record<string, string>> {
 		const res = await this.sendPOSTRequest(
-			`/setting/login/?appSecret=${this.appSecret}&serviceName=iClub`,
+			`/setting/login/?appSecret=${this.appSecret}&serviceName=${this.serviceName}`,
 			{
 				terminalAppId: `https://db.cloudlabs.sharp.co.jp/clpf/key/${this.appKey}`,
 			},

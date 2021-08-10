@@ -10,6 +10,8 @@ Currently to retrieve an API key, you'll have to use a reverse proxy like charle
 https://hms.cloudlabs.sharp.co.jp/hems/pfApi/ta/setting/login/?appSecret=xxxx&serviceName=iClub
 ```
 
+If the `serviceName` is not `iClub`, write it down as well.
+
 For the `terminalAppId`, you only need the part after `/key/`
 
 The app is using SSL pinning so I wasn't able to figure out how the authentication works (yet).
@@ -20,7 +22,8 @@ The app is using SSL pinning so I wasn't able to figure out how the authenticati
 const appSecret = 'xxxx';
 const appKey = 'xxxx';
 
-const cocoro = new Cocoro(appSecret, appKey);
+// iClub is the default service name, you can also leave it out
+const cocoro = new Cocoro(appSecret, appKey, 'iClub');
 await cocoro.login();
 
 const devices = await cocoro.queryDevices();
