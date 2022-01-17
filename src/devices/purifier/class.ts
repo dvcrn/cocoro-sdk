@@ -166,9 +166,10 @@ export class Purifier extends Device {
 	/**
 	 * Split the string and return it.
 	 *
+	 * @access     private
 	 * @return     {Array<string>}  split state
 	 */
-	chunkState(state: string): Array<string> {
+	private chunkState(state: string): Array<string> {
 		return state.match(/.{2}/g) as Array<string>;
 	}
 
