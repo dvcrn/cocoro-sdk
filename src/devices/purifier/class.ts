@@ -1,13 +1,17 @@
 import { Device } from '../../device';
 import {
-	BinaryPropertyStatus,
-	PropertyStatus,
 	StatusCode,
 	valueBinary,
 	ValueSingle,
-	ValueType,
-	mode,
+	modeCode,
+	modeType,
 } from './properties';
+
+import {
+	BinaryPropertyStatus,
+	PropertyStatus,
+	ValueType,
+} from '../../properties';
 
 export class Purifier extends Device {
 	constructor(props) {
@@ -41,10 +45,22 @@ export class Purifier extends Device {
 	}
 
 	/**
+	 * Queues a specific propertyStatus for change
+	 * This alone does not do anything, the changes need to get transmitted to the
+	 * cocoro air api
+	 *
+	 * @param      {PropertyStatus}  propertyStatus  The property status
+	 */
+	queuePropertyStatusUpdate(propertyStatus: any): void {
+		super.queuePropertyStatusUpdate(propertyStatus);
+	}
+
+	/**
 	 * Convert mode string to binary.
+	 * @access     private
 	 * @return     {string}  mode binary
 	 */
-	existMode = (mode: string): string => {
+	private stringToMode = (mode: string): string => {
 		switch (mode) {
 			case 'pollen':
 				return valueBinary.OPERATION_POLLEN;
@@ -68,38 +84,13 @@ export class Purifier extends Device {
 	};
 
 	/**
-	 * Queues a specific propertyStatus for change
-	 * This alone does not do anything, the changes need to get transmitted to the
-	 * cocoro air api
-	 *
-	 * @param      {PropertyStatus}  propertyStatus  The property status
-	 */
-	queuePropertyStatusUpdate(propertyStatus: PropertyStatus): void {
-		for (const property of this.properties) {
-			if (property.statusCode !== propertyStatus.statusCode) {
-				continue;
-			}
-
-			if (property.set !== true) {
-				throw new Error(`property ${property.statusName} is not settable`);
-			}
-
-			this.propertyUpdates[property.statusCode] = propertyStatus;
-			return;
-		}
-
-		throw new Error(
-			`property ${propertyStatus.statusCode} does not exist on this device`,
-		);
-	}
-
-	/**
 	 * Change mode.
+	 * @param      {modeType}  mode  The mode to string
 	 */
-	setMode(mode: string, callback?): void {
+	setMode(mode: modeType): void {
 		if (!mode || typeof mode !== 'string') throw new Error('invalid parameter');
 
-		const _mode: string = this.existMode(mode);
+		const _mode: string = this.stringToMode(mode);
 
 		if (_mode) {
 			this.queuePropertyStatusUpdate({
@@ -109,15 +100,47 @@ export class Purifier extends Device {
 				statusCode: StatusCode.OPERATION_MODE,
 				valueType: ValueType.BINARY,
 			});
+		}
+	}
 
-			if (callback) callback();
+	/**
+	 * Gets the mode.
+	 *
+	 * @return     {string}  The mode.
+	 */
+	getMode(): string {
+		const state = this.getPropertyStatus(
+			StatusCode.OPERATION_MODE,
+		) as BinaryPropertyStatus;
+
+		const modeNum = this.chunkState(state.valueBinary.code)[4];
+
+		switch (modeNum) {
+			case modeCode.AI_AUTO:
+				return 'ai_auto';
+			case modeCode.AUTO:
+				return 'auto';
+			case modeCode.POLLEN:
+				return 'pollen';
+			case modeCode.NIGHT:
+				return 'night';
+			case modeCode.REALIZE:
+				return 'realize';
+			case modeCode.SILENT:
+				return 'silent';
+			case modeCode.MEDIUM:
+				return 'medium';
+			case modeCode.HIGH:
+				return 'high';
+			default:
+				return '';
 		}
 	}
 
 	/**
 	 * Turn on humidification.
 	 */
-	startHumidity(callback?): void {
+	startHumidity(): void {
 		this.queuePropertyStatusUpdate({
 			valueBinary: {
 				code: valueBinary.HUMIDITY_ON,
@@ -125,14 +148,12 @@ export class Purifier extends Device {
 			statusCode: StatusCode.OPERATION_MODE,
 			valueType: ValueType.BINARY,
 		});
-
-		if (callback) callback();
 	}
 
 	/**
 	 * Turn off humidification.
 	 */
-	stopHumidity(callback?): void {
+	stopHumidity(): void {
 		this.queuePropertyStatusUpdate({
 			valueBinary: {
 				code: valueBinary.HUMIDITY_OFF,
@@ -140,8 +161,6 @@ export class Purifier extends Device {
 			statusCode: StatusCode.OPERATION_MODE,
 			valueType: ValueType.BINARY,
 		});
-
-		if (callback) callback();
 	}
 
 	/**
@@ -179,39 +198,5 @@ export class Purifier extends Device {
 
 		const chunkCode = this.chunkState(state.valueBinary.code);
 		return parseInt(chunkCode[4], 16);
-	}
-
-	/**
-	 * Gets the mode.
-	 *
-	 * @return     {string}  The mode.
-	 */
-	getMode(): string {
-		const state = this.getPropertyStatus(
-			StatusCode.OPERATION_MODE,
-		) as BinaryPropertyStatus;
-
-		const modeNum = this.chunkState(state.valueBinary.code)[4];
-
-		switch (modeNum) {
-			case mode.AI_AUTO:
-				return 'ai_auto';
-			case mode.AUTO:
-				return 'auto';
-			case mode.POLLEN:
-				return 'pollen';
-			case mode.NIGHT:
-				return 'night';
-			case mode.REALIZE:
-				return 'realize';
-			case mode.SILENT:
-				return 'silent';
-			case mode.MEDIUM:
-				return 'medium';
-			case mode.HIGH:
-				return 'high';
-			default:
-				return '';
-		}
 	}
 }

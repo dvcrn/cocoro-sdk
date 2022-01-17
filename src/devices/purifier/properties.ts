@@ -26,54 +26,23 @@ export enum valueBinary {
 	HUMIDITY_OFF = '000900000000000000000000000000000000000000000000000000',
 }
 
-export enum mode {
+export enum modeCode {
+	POLLEN = '13',
+	REALIZE = '40',
 	AI_AUTO = '20',
 	AUTO = '10',
-	POLLEN = '13',
 	NIGHT = '11',
-	REALIZE = '40',
 	SILENT = '14',
 	MEDIUM = '15',
 	HIGH = '16',
 }
 
-export enum ValueType {
-	SINGLE = 'valueSingle',
-	BINARY = 'valueBinary',
-	RANGE = 'valueRange',
-}
-
-export interface BinaryPropertyStatus {
-	valueBinary: {
-		code: string;
-	};
-	statusCode: StatusCode;
-	valueType: ValueType.BINARY;
-}
-
-export interface SinglePropertyStatus {
-	valueSingle: {
-		code: ValueSingle;
-	};
-	statusCode: StatusCode;
-	valueType: ValueType.SINGLE;
-}
-
-export enum RangePropertyType {
-	INT = 'int',
-	FLOAT = 'float',
-}
-
-export interface RangePropertyStatus {
-	valueRange: {
-		code: string;
-		type: RangePropertyType;
-	};
-	statusCode: StatusCode;
-	valueType: ValueType.RANGE;
-}
-
-export type PropertyStatus =
-	| SinglePropertyStatus
-	| RangePropertyStatus
-	| BinaryPropertyStatus;
+export type modeType =
+	| 'ai_auto'
+	| 'auto'
+	| 'pollen'
+	| 'night'
+	| 'realize'
+	| 'silent'
+	| 'medium'
+	| 'high';
