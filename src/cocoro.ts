@@ -2,6 +2,7 @@ import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
 import { StatusCode } from './properties';
 import { Device } from './device';
+import { Purifier } from './devices/purifier/class';
 import {
 	Box,
 	QueryBoxesResponse,
@@ -109,31 +110,38 @@ export class Cocoro {
 	/**
 	 * Queries all available devices in the account
 	 *
-	 * @return     {Promise<Device[]>}  Array of devices available
+	 * @return     {Promise<(Device | Purifier)[]>}  Array of devices available
 	 */
-	async queryDevices(): Promise<Device[]> {
+	async queryDevices(): Promise<(Device | Purifier)[]> {
 		const boxes = await this.queryBoxes();
 
-		const devices: Device[] = [];
+		const devices: (Device | Purifier)[] = [];
 		for (const box of boxes) {
 			const { properties, status } = await this.queryBoxProperties(box);
+			const deviceType = box.echonetData[0].labelData.deviceType;
 
-			devices.push(
-				new Device({
-					name: box.echonetData[0].labelData.name,
-					deviceId: box.echonetData[0].deviceId,
-					echonetNode: box.echonetData[0].echonetNode,
-					echonetObject: box.echonetData[0].echonetObject,
-					properties: properties,
-					status: status,
+			const options = {
+				name: box.echonetData[0].labelData.name,
+				kind: deviceType,
+				deviceId: box.echonetData[0].deviceId,
+				echonetNode: box.echonetData[0].echonetNode,
+				echonetObject: box.echonetData[0].echonetObject,
+				properties: properties,
+				status: status,
 
-					maker: box.echonetData[0].maker,
-					model: box.echonetData[0].model,
-					serialNumber: box.echonetData[0].serialNumber,
+				maker: box.echonetData[0].maker,
+				model: box.echonetData[0].model,
+				serialNumber: box.echonetData[0].serialNumber,
 
-					box: box,
-				}),
-			);
+				box: box,
+			};
+
+			// Switching between air purifiers and air conditioners
+			if (deviceType === 'AIR_CLEANER') {
+				devices.push(new Purifier(options));
+			} else {
+				devices.push(new Device(options));
+			}
 		}
 
 		return devices;
