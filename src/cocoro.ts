@@ -1,5 +1,6 @@
 import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
+import { ControlListResponse } from '..';
 import { Device } from './device';
 import { Aircon } from './devices/aircon/aircon';
 import { Purifier } from './devices/purifier/purifier';
@@ -199,6 +200,21 @@ export class Cocoro {
 			body,
 		);
 
+		// check for error
+		const jsonBody = await res.json();
+		if (jsonBody['controlList'] !== undefined) {
+			const errors: string[] = [];
+			for (const row of (jsonBody as ControlListResponse).controlList) {
+				if (row.errorCode !== '') {
+					errors.push(`${row.id}=${row.errorCode}`);
+				}
+			}
+
+			if (errors.length > 0) {
+				throw new Error('Cocoro API Error: ' + errors.join(','));
+			}
+		}
+
 		// update existing device propertstatus to the new values
 		for (const [k, v] of Object.entries(updateMap)) {
 			for (let i = 0; i < device.status.length; i++) {
@@ -211,7 +227,7 @@ export class Cocoro {
 		// reset property updates so they don't fire again
 		device.propertyUpdates = [];
 
-		return res.json();
+		return jsonBody;
 	}
 
 	/**

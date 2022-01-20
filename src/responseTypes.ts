@@ -63,3 +63,7 @@ export interface QueryDevicePropertiesResponse {
 		status: [PropertyStatus];
 	};
 }
+
+export interface ControlListResponse {
+	controlList: { id: any; errorCode: string }[];
+}
