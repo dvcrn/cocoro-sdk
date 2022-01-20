@@ -42,7 +42,7 @@ interface DeviceInit {
  *
  * @class      Device (name)
  */
-export class Device {
+export abstract class Device {
 	name: string;
 	kind: DeviceType;
 	deviceId: number;
@@ -87,6 +87,10 @@ export class Device {
 		this.serialNumber = serialNumber;
 		this.box = box;
 	}
+
+	// common methods each device has to implement
+	abstract queuePowerOn(): void;
+	abstract queuePowerOff(): void;
 
 	/**
 	 * Queues a specific propertyStatus for change

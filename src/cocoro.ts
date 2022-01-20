@@ -9,6 +9,7 @@ import {
 	QueryBoxesResponse,
 	QueryDevicePropertiesResponse,
 } from './responseTypes';
+import { UnknownDevice as Unknown } from './devices/unknown';
 const fetch = fetchCookie(nodeFetch);
 
 export class Cocoro {
@@ -50,6 +51,17 @@ export class Cocoro {
 			},
 			body: JSON.stringify(body),
 		});
+	}
+
+	private deviceTypeFromString(s: string): DeviceType {
+		switch (s) {
+			case 'AIR_CON':
+				return DeviceType.AirCondition;
+			case 'AIR_CLEANER':
+				return DeviceType.AirCleaner;
+			default:
+				return DeviceType.Unknown;
+		}
 	}
 
 	/**
@@ -111,15 +123,18 @@ export class Cocoro {
 	/**
 	 * Queries all available devices in the account
 	 *
-	 * @return     {Promise<(Device | Purifier | Aircon)[]>}  Array of devices available
+	 * @return     {Promise<(Unknown | Purifier | Aircon)[]>}  Array of devices available
 	 */
-	async queryDevices(): Promise<(Device | Purifier | Aircon)[]> {
+	async queryDevices(): Promise<(Unknown | Purifier | Aircon)[]> {
 		const boxes = await this.queryBoxes();
 
 		const devices: (Device | Purifier)[] = [];
 		for (const box of boxes) {
 			const { properties, status } = await this.queryBoxProperties(box);
-			const deviceType = box.echonetData[0].labelData.deviceType;
+
+			const deviceType = this.deviceTypeFromString(
+				box.echonetData[0].labelData.deviceType,
+			);
 
 			const options = {
 				name: box.echonetData[0].labelData.name,
@@ -139,16 +154,16 @@ export class Cocoro {
 
 			// Switching between air purifiers and air conditioners
 			switch (deviceType) {
-				case DeviceType.AIR_CLEANER:
+				case DeviceType.AirCleaner:
 					devices.push(new Purifier(options));
 					break;
 
-				case DeviceType.AIR_CONDITION:
+				case DeviceType.AirCondition:
 					devices.push(new Aircon(options));
 					break;
 
 				default:
-					devices.push(new Device(options));
+					devices.push(new Unknown(options));
 					break;
 			}
 		}

@@ -14,8 +14,9 @@ export type ValueSingle = PurifierValueSingle | AirconValueSingle;
 export type ValueBinary = PurifierValueBinary;
 
 export enum DeviceType {
-	AIR_CONDITION = 'AIR_CON',
-	AIR_CLEANER = 'AIR_CLEANER',
+	Unknown = 'UNKNOWN',
+	AirCondition = 'AIR_CON',
+	AirCleaner = 'AIR_CLEANER',
 }
 
 export enum ValueType {
