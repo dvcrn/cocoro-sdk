@@ -225,7 +225,7 @@ export class Cocoro {
 		}
 
 		// reset property updates so they don't fire again
-		device.propertyUpdates = [];
+		device.propertyUpdates = {};
 
 		return jsonBody;
 	}

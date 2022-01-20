@@ -49,7 +49,7 @@ export abstract class Device {
 	readonly properties: Property[];
 	status: PropertyStatus[];
 
-	propertyUpdates: any;
+	propertyUpdates: Partial<Record<StatusCode, PropertyStatus>>;
 	maker: string;
 	model: string;
 	serialNumber: string;
