@@ -1,4 +1,4 @@
-import { Property, PropertyStatus, DeviceType } from './properties';
+import { DeviceType, Property, PropertyStatus } from './properties';
 
 export interface Box {
 	boxId: string;

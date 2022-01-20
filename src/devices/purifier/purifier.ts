@@ -1,17 +1,12 @@
 import { Device } from '../../device';
+import { BinaryPropertyStatus, ValueType } from '../../properties';
 import {
+	ModeCode,
+	ModeType,
 	StatusCode,
 	ValueBinary,
 	ValueSingle,
-	ModeCode,
-	ModeType,
 } from './properties';
-
-import {
-	BinaryPropertyStatus,
-	PropertyStatus,
-	ValueType,
-} from '../../properties';
 
 export class Purifier extends Device {
 	/**

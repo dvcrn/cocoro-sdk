@@ -1,15 +1,15 @@
 import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
-import { DeviceType, StatusCode } from './properties';
 import { Device } from './device';
-import { Purifier } from './devices/purifier/purifier';
 import { Aircon } from './devices/aircon/aircon';
+import { Purifier } from './devices/purifier/purifier';
+import { UnknownDevice as Unknown } from './devices/unknown';
+import { DeviceType } from './properties';
 import {
 	Box,
 	QueryBoxesResponse,
 	QueryDevicePropertiesResponse,
 } from './responseTypes';
-import { UnknownDevice as Unknown } from './devices/unknown';
 const fetch = fetchCookie(nodeFetch);
 
 export class Cocoro {

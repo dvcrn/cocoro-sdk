@@ -1,22 +1,19 @@
 import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
 import {
+	BinaryProperty,
 	BinaryPropertyStatus,
 	DeviceType,
 	Property,
 	PropertyStatus,
-	RangePropertyStatus,
-	RangePropertyType,
-	SinglePropertyStatus,
-	SingleProperty,
 	RangeProperty,
-	BinaryProperty,
+	RangePropertyStatus,
+	SingleProperty,
+	SinglePropertyStatus,
 	StatusCode,
-	ValueSingle,
 	ValueType,
 } from './properties';
 import { Box } from './responseTypes';
-import { State8 } from './state';
 const fetch = fetchCookie(nodeFetch);
 
 interface DeviceInit {

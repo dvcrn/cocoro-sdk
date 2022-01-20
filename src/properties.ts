@@ -1,13 +1,12 @@
 import {
+	StatusCode as AirconStatusCode,
+	ValueSingle as AirconValueSingle,
+} from './devices/aircon/properties';
+import {
 	StatusCode as PurifierStatusCode,
 	ValueBinary as PurifierValueBinary,
 	ValueSingle as PurifierValueSingle,
 } from './devices/purifier/properties';
-
-import {
-	StatusCode as AirconStatusCode,
-	ValueSingle as AirconValueSingle,
-} from './devices/aircon/properties';
 
 export type StatusCode = PurifierStatusCode | AirconStatusCode;
 export type ValueSingle = PurifierValueSingle | AirconValueSingle;
