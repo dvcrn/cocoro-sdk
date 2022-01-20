@@ -65,5 +65,5 @@ export interface QueryDevicePropertiesResponse {
 }
 
 export interface ControlListResponse {
-	controlList: { id: null | string; errorCode: string }[];
+	controlList: { id: null | string; errorCode: string | null }[];
 }

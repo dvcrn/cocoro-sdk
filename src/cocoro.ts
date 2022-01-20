@@ -205,7 +205,7 @@ export class Cocoro {
 		if (jsonBody['controlList'] !== undefined) {
 			const errors: string[] = [];
 			for (const row of (jsonBody as ControlListResponse).controlList) {
-				if (row.errorCode !== '') {
+				if (row.errorCode !== '' && row.errorCode !== null) {
 					errors.push(`${row.id}=${row.errorCode}`);
 				}
 			}
