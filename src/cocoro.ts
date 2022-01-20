@@ -137,7 +137,7 @@ export class Cocoro {
 			};
 
 			// Switching between air purifiers and air conditioners
-			if (deviceType === 'AIR_CLEANER') {
+			if (deviceType === DeviceType.AIR_CLEANER) {
 				devices.push(new Purifier(options));
 			} else {
 				devices.push(new Device(options));

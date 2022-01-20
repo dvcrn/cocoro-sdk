@@ -29,6 +29,7 @@ await cocoro.login();
 const devices = await cocoro.queryDevices();
 const device = devices[0];
 console.log(device);
+console.log(device.kind); // AIR_CON, AIR_CLEANER
 console.log(device.queryProperty(StatusCode.OPERATION_MODE));
 
 device.queuePowerOn();

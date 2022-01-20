@@ -1,4 +1,5 @@
 export enum DeviceType {
+	AIR_CONDITION = 'AIR_CON',
 	AIR_CLEANER = 'AIR_CLEANER',
 }
 
