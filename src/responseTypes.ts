@@ -1,4 +1,4 @@
-import { Property, PropertyStatus } from './properties';
+import { Property, PropertyStatus, DeviceType } from './properties';
 
 export interface Box {
 	boxId: string;
@@ -33,7 +33,7 @@ export interface Box {
 				id: number;
 				place: string;
 				name: string;
-				deviceType: string;
+				deviceType: DeviceType;
 				zipCd: string;
 				yomi: string;
 				lSubInfo: string;

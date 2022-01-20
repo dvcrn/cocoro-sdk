@@ -2,6 +2,7 @@ import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
 import {
 	BinaryPropertyStatus,
+	DeviceType,
 	Property,
 	PropertyStatus,
 	RangePropertyStatus,
@@ -20,6 +21,7 @@ const fetch = fetchCookie(nodeFetch);
 
 interface DeviceInit {
 	name: string;
+	kind: DeviceType;
 	deviceId: number;
 	echonetNode: string;
 	echonetObject: string;
@@ -42,6 +44,7 @@ interface DeviceInit {
  */
 export class Device {
 	name: string;
+	kind: DeviceType;
 	deviceId: number;
 	echonetNode: string;
 	echonetObject: string;
@@ -58,6 +61,7 @@ export class Device {
 
 	constructor({
 		name,
+		kind,
 		deviceId,
 		echonetNode,
 		echonetObject,
@@ -69,6 +73,7 @@ export class Device {
 		box,
 	}: DeviceInit) {
 		this.name = name;
+		this.kind = kind;
 		this.deviceId = deviceId;
 		this.echonetNode = echonetNode;
 		this.echonetObject = echonetObject;

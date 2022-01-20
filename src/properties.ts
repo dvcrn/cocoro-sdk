@@ -1,3 +1,7 @@
+export enum DeviceType {
+	AIR_CLEANER = 'AIR_CLEANER',
+}
+
 export enum StatusCode {
 	STATE_DETAIL = 'FA',
 	WINDSPEED = 'A0',
