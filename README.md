@@ -2,6 +2,11 @@
 
 This is a work in progress attempt to reverse-engineer the cocoro air API from Sharp, used to control smart appliances through the internet
 
+Currently supported appliances are:
+
+- Air-Condition (@dvcrn)
+- Air-Purifier (@shossk)
+
 ## Authentication
 
 Currently to retrieve an API key, you'll have to use a reverse proxy like charles, mitmproxy or Proxyman to capture traffic sent from your device to the Cocoro air server. Set the proxy on your device, open the app an lookout for the login API call. Extract the `appSecret` from the URL, and the `terminalAppId` from the body:

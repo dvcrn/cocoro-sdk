@@ -8,6 +8,7 @@ import {
 	QueryBoxesResponse,
 	QueryDevicePropertiesResponse,
 } from './responseTypes';
+import { DeviceType } from '..';
 const fetch = fetchCookie(nodeFetch);
 
 export class Cocoro {
