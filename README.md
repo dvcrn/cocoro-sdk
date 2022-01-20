@@ -37,7 +37,14 @@ console.log(device);
 console.log(device.kind); // AIR_CON, AIR_CLEANER
 console.log(device.queryProperty(StatusCode.OPERATION_MODE));
 
-device.queuePowerOn();
+// aircon
+const aircon = device as Aircon;
+aircon.queuePowerOn();
+
+// purifier
+const purifier = device as Purifier;
+purifier.queuePowerOn();
+
 await cocoro.executeQueuedUpdates(device);
 ```
 

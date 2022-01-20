@@ -9,7 +9,7 @@ export enum ValueSingle {
 	POWER_OFF = '31',
 }
 
-export enum valueBinary {
+export enum ValueBinary {
 	POWER_ON = '00030000000000000000000000FF00000000000000000000000000',
 	POWER_OFF = '000300000000000000000000000000000000000000000000000000',
 
@@ -26,7 +26,7 @@ export enum valueBinary {
 	HUMIDITY_OFF = '000900000000000000000000000000000000000000000000000000',
 }
 
-export enum modeCode {
+export enum ModeCode {
 	POLLEN = '13',
 	REALIZE = '40',
 	AI_AUTO = '20',
@@ -37,7 +37,7 @@ export enum modeCode {
 	HIGH = '16',
 }
 
-export type modeType =
+export type ModeType =
 	| 'ai_auto'
 	| 'auto'
 	| 'pollen'

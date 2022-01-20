@@ -1,14 +1,14 @@
 import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
-import { StatusCode } from './properties';
+import { DeviceType, StatusCode } from './properties';
 import { Device } from './device';
-import { Purifier } from './devices/purifier/class';
+import { Purifier } from './devices/purifier/purifier';
+import { Aircon } from './devices/aircon/aircon';
 import {
 	Box,
 	QueryBoxesResponse,
 	QueryDevicePropertiesResponse,
 } from './responseTypes';
-import { DeviceType } from '..';
 const fetch = fetchCookie(nodeFetch);
 
 export class Cocoro {
@@ -111,9 +111,9 @@ export class Cocoro {
 	/**
 	 * Queries all available devices in the account
 	 *
-	 * @return     {Promise<(Device | Purifier)[]>}  Array of devices available
+	 * @return     {Promise<(Device | Purifier | Aircon)[]>}  Array of devices available
 	 */
-	async queryDevices(): Promise<(Device | Purifier)[]> {
+	async queryDevices(): Promise<(Device | Purifier | Aircon)[]> {
 		const boxes = await this.queryBoxes();
 
 		const devices: (Device | Purifier)[] = [];
@@ -138,10 +138,18 @@ export class Cocoro {
 			};
 
 			// Switching between air purifiers and air conditioners
-			if (deviceType === DeviceType.AIR_CLEANER) {
-				devices.push(new Purifier(options));
-			} else {
-				devices.push(new Device(options));
+			switch (deviceType) {
+				case DeviceType.AIR_CLEANER:
+					devices.push(new Purifier(options));
+					break;
+
+				case DeviceType.AIR_CONDITION:
+					devices.push(new Aircon(options));
+					break;
+
+				default:
+					devices.push(new Device(options));
+					break;
 			}
 		}
 

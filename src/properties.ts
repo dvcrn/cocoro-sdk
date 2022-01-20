@@ -1,41 +1,21 @@
+import {
+	StatusCode as PurifierStatusCode,
+	ValueBinary as PurifierValueBinary,
+	ValueSingle as PurifierValueSingle,
+} from './devices/purifier/properties';
+
+import {
+	StatusCode as AirconStatusCode,
+	ValueSingle as AirconValueSingle,
+} from './devices/aircon/properties';
+
+export type StatusCode = PurifierStatusCode | AirconStatusCode;
+export type ValueSingle = PurifierValueSingle | AirconValueSingle;
+export type ValueBinary = PurifierValueBinary;
+
 export enum DeviceType {
 	AIR_CONDITION = 'AIR_CON',
 	AIR_CLEANER = 'AIR_CLEANER',
-}
-
-export enum StatusCode {
-	STATE_DETAIL = 'FA',
-	WINDSPEED = 'A0',
-	POWER = '80',
-	NANOE_MODE = 'CF',
-	OPERATION_MODE = 'B0',
-	HEAT_TEMPERATURE = 'B3',
-	ROOM_TEMPERATURE = 'BB',
-}
-
-export enum ValueSingle {
-	POWER_ON = '30',
-	POWER_OFF = '31',
-
-	NANOE_ON = '41',
-	NANOE_OFF = '42',
-
-	OPERATION_OTHER = '40',
-	OPERATION_AUTO = '41',
-	OPERATION_COOL = '42',
-	OPERATION_HEAT = '43',
-	OPERATION_DEHUMIDIFY = '44',
-	OPERATION_VENTILATION = '45',
-
-	WINDSPEED_LEVEL_1 = '31',
-	WINDSPEED_LEVEL_2 = '32',
-	WINDSPEED_LEVEL_3 = '33',
-	WINDSPEED_LEVEL_4 = '34',
-	WINDSPEED_LEVEL_5 = '35',
-	WINDSPEED_LEVEL_6 = '36',
-	WINDSPEED_LEVEL_7 = '37',
-	WINDSPEED_LEVEL_8 = '38',
-	WINDSPEED_LEVEL_AUTO = '41',
 }
 
 export enum ValueType {
