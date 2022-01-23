@@ -1,22 +1,19 @@
 import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
 import {
+	BinaryProperty,
 	BinaryPropertyStatus,
 	DeviceType,
 	Property,
 	PropertyStatus,
-	RangePropertyStatus,
-	RangePropertyType,
-	SinglePropertyStatus,
-	SingleProperty,
 	RangeProperty,
-	BinaryProperty,
+	RangePropertyStatus,
+	SingleProperty,
+	SinglePropertyStatus,
 	StatusCode,
-	ValueSingle,
 	ValueType,
 } from './properties';
 import { Box } from './responseTypes';
-import { State8 } from './state';
 const fetch = fetchCookie(nodeFetch);
 
 interface DeviceInit {
@@ -42,7 +39,7 @@ interface DeviceInit {
  *
  * @class      Device (name)
  */
-export class Device {
+export abstract class Device {
 	name: string;
 	kind: DeviceType;
 	deviceId: number;
@@ -52,7 +49,7 @@ export class Device {
 	readonly properties: Property[];
 	status: PropertyStatus[];
 
-	propertyUpdates: any;
+	propertyUpdates: Partial<Record<StatusCode, PropertyStatus>>;
 	maker: string;
 	model: string;
 	serialNumber: string;
@@ -87,6 +84,10 @@ export class Device {
 		this.serialNumber = serialNumber;
 		this.box = box;
 	}
+
+	// common methods each device has to implement
+	abstract queuePowerOn(): void;
+	abstract queuePowerOff(): void;
 
 	/**
 	 * Queues a specific propertyStatus for change
@@ -158,144 +159,5 @@ export class Device {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Helper method to fetch the state-object 8 from the device
-	 * This wraps getPropertyStatus, parsing and instantiating State8
-	 *
-	 * @return     {State8}  The state 8.
-	 */
-	getState8(): State8 {
-		const state8Bin = this.getPropertyStatus(
-			StatusCode.STATE_DETAIL,
-		) as BinaryPropertyStatus;
-
-		return new State8(state8Bin.valueBinary.code);
-	}
-
-	/**
-	 * Gets the temperature.
-	 *
-	 * @return     {number}  The temperature.
-	 */
-	getTemperature(): number {
-		return this.getState8().temperature;
-	}
-
-	/**
-	 * Gets the room temperature.
-	 *
-	 * @return     {number}  The temperature.
-	 */
-	getRoomTemperature(): number {
-		return parseInt(
-			(
-				this.getPropertyStatus(
-					StatusCode.ROOM_TEMPERATURE,
-				) as RangePropertyStatus
-			).valueRange.code,
-		);
-	}
-
-	/**
-	 * Gets the windspeed.
-	 *
-	 * @return     {ValueSingle}  The windspeed.
-	 */
-	getWindspeed() {
-		const ws = this.getPropertyStatus(
-			StatusCode.WINDSPEED,
-		) as SinglePropertyStatus;
-		return ws.valueSingle.code;
-	}
-
-	/**
-	 * Queues a temperature update
-	 *
-	 * @param      {number}  temp    The new temperature
-	 */
-	queueTemperatureUpdate(temp: number): void {
-		const s8 = new State8();
-		s8.temperature = temp;
-
-		this.queuePropertyStatusUpdate({
-			valueBinary: {
-				code: s8.state,
-			},
-			statusCode: StatusCode.STATE_DETAIL,
-			valueType: ValueType.BINARY,
-		});
-	}
-
-	/**
-	 * Queues a power on action
-	 */
-	queuePowerOn(): void {
-		this.queuePropertyStatusUpdate({
-			valueSingle: {
-				code: ValueSingle.POWER_ON,
-			},
-			statusCode: StatusCode.POWER,
-			valueType: ValueType.SINGLE,
-		});
-	}
-
-	/**
-	 * Queues a power off action
-	 */
-	queuePowerOff(): void {
-		this.queuePropertyStatusUpdate({
-			valueSingle: {
-				code: ValueSingle.POWER_OFF,
-			},
-			statusCode: StatusCode.POWER,
-			valueType: ValueType.SINGLE,
-		});
-	}
-
-	/**
-	 * Queues operation mode update
-	 */
-	queueOperationModeUpdate(
-		mode:
-			| ValueSingle.OPERATION_OTHER
-			| ValueSingle.OPERATION_AUTO
-			| ValueSingle.OPERATION_COOL
-			| ValueSingle.OPERATION_HEAT
-			| ValueSingle.OPERATION_DEHUMIDIFY
-			| ValueSingle.OPERATION_VENTILATION,
-	) {
-		this.queuePropertyStatusUpdate({
-			valueSingle: {
-				code: mode,
-			},
-			statusCode: StatusCode.OPERATION_MODE,
-			valueType: ValueType.SINGLE,
-		});
-	}
-
-	/**
-	 * Queues windspeed  update
-	 */
-	queueWindspeedUpdate(
-		mode:
-			| ValueSingle.WINDSPEED_LEVEL_1
-			| ValueSingle.WINDSPEED_LEVEL_2
-			| ValueSingle.WINDSPEED_LEVEL_3
-			| ValueSingle.WINDSPEED_LEVEL_4
-			| ValueSingle.WINDSPEED_LEVEL_5
-			| ValueSingle.WINDSPEED_LEVEL_6
-			| ValueSingle.WINDSPEED_LEVEL_7
-			| ValueSingle.WINDSPEED_LEVEL_8
-			| ValueSingle.WINDSPEED_LEVEL_AUTO,
-	) {
-		this.queuePropertyStatusUpdate({
-			valueSingle: {
-				code: mode,
-			},
-			statusCode: StatusCode.WINDSPEED,
-			valueType: ValueType.SINGLE,
-		});
 	}
 }

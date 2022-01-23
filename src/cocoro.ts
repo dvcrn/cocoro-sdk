@@ -1,14 +1,16 @@
 import { default as fetchCookie } from 'fetch-cookie';
 import nodeFetch from 'node-fetch';
-import { StatusCode } from './properties';
+import { ControlListResponse } from '..';
 import { Device } from './device';
-import { Purifier } from './devices/purifier/class';
+import { Aircon } from './devices/aircon/aircon';
+import { Purifier } from './devices/purifier/purifier';
+import { UnknownDevice as Unknown } from './devices/unknown';
+import { DeviceType } from './properties';
 import {
 	Box,
 	QueryBoxesResponse,
 	QueryDevicePropertiesResponse,
 } from './responseTypes';
-import { DeviceType } from '..';
 const fetch = fetchCookie(nodeFetch);
 
 export class Cocoro {
@@ -50,6 +52,17 @@ export class Cocoro {
 			},
 			body: JSON.stringify(body),
 		});
+	}
+
+	private deviceTypeFromString(s: string): DeviceType {
+		switch (s) {
+			case 'AIR_CON':
+				return DeviceType.AirCondition;
+			case 'AIR_CLEANER':
+				return DeviceType.AirCleaner;
+			default:
+				return DeviceType.Unknown;
+		}
 	}
 
 	/**
@@ -111,15 +124,18 @@ export class Cocoro {
 	/**
 	 * Queries all available devices in the account
 	 *
-	 * @return     {Promise<(Device | Purifier)[]>}  Array of devices available
+	 * @return     {Promise<(Unknown | Purifier | Aircon)[]>}  Array of devices available
 	 */
-	async queryDevices(): Promise<(Device | Purifier)[]> {
+	async queryDevices(): Promise<(Unknown | Purifier | Aircon)[]> {
 		const boxes = await this.queryBoxes();
 
 		const devices: (Device | Purifier)[] = [];
 		for (const box of boxes) {
 			const { properties, status } = await this.queryBoxProperties(box);
-			const deviceType = box.echonetData[0].labelData.deviceType;
+
+			const deviceType = this.deviceTypeFromString(
+				box.echonetData[0].labelData.deviceType,
+			);
 
 			const options = {
 				name: box.echonetData[0].labelData.name,
@@ -138,10 +154,18 @@ export class Cocoro {
 			};
 
 			// Switching between air purifiers and air conditioners
-			if (deviceType === DeviceType.AIR_CLEANER) {
-				devices.push(new Purifier(options));
-			} else {
-				devices.push(new Device(options));
+			switch (deviceType) {
+				case DeviceType.AirCleaner:
+					devices.push(new Purifier(options));
+					break;
+
+				case DeviceType.AirCondition:
+					devices.push(new Aircon(options));
+					break;
+
+				default:
+					devices.push(new Unknown(options));
+					break;
 			}
 		}
 
@@ -176,6 +200,21 @@ export class Cocoro {
 			body,
 		);
 
+		// check for error
+		const jsonBody = await res.json();
+		if (jsonBody['controlList'] !== undefined) {
+			const errors: string[] = [];
+			for (const row of (jsonBody as ControlListResponse).controlList) {
+				if (row.errorCode !== '' && row.errorCode !== null) {
+					errors.push(`${row.id}=${row.errorCode}`);
+				}
+			}
+
+			if (errors.length > 0) {
+				throw new Error('Cocoro API Error: ' + errors.join(','));
+			}
+		}
+
 		// update existing device propertstatus to the new values
 		for (const [k, v] of Object.entries(updateMap)) {
 			for (let i = 0; i < device.status.length; i++) {
@@ -186,9 +225,9 @@ export class Cocoro {
 		}
 
 		// reset property updates so they don't fire again
-		device.propertyUpdates = [];
+		device.propertyUpdates = {};
 
-		return res.json();
+		return jsonBody;
 	}
 
 	/**

@@ -1,4 +1,4 @@
-import { Property, PropertyStatus, DeviceType } from './properties';
+import { DeviceType, Property, PropertyStatus } from './properties';
 
 export interface Box {
 	boxId: string;
@@ -62,4 +62,8 @@ export interface QueryDevicePropertiesResponse {
 		property: [Property];
 		status: [PropertyStatus];
 	};
+}
+
+export interface ControlListResponse {
+	controlList: { id: null | string; errorCode: string | null }[];
 }

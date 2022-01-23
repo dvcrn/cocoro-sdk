@@ -1,23 +1,14 @@
 import { Device } from '../../device';
+import { BinaryPropertyStatus, ValueType } from '../../properties';
 import {
+	ModeCode,
+	ModeType,
 	StatusCode,
-	valueBinary,
+	ValueBinary,
 	ValueSingle,
-	modeCode,
-	modeType,
 } from './properties';
 
-import {
-	BinaryPropertyStatus,
-	PropertyStatus,
-	ValueType,
-} from '../../properties';
-
 export class Purifier extends Device {
-	constructor(props) {
-		super(props);
-	}
-
 	/**
 	 * Queues a power on action
 	 */
@@ -45,39 +36,28 @@ export class Purifier extends Device {
 	}
 
 	/**
-	 * Queues a specific propertyStatus for change
-	 * This alone does not do anything, the changes need to get transmitted to the
-	 * cocoro air api
-	 *
-	 * @param      {PropertyStatus}  propertyStatus  The property status
-	 */
-	queuePropertyStatusUpdate(propertyStatus: any): void {
-		super.queuePropertyStatusUpdate(propertyStatus);
-	}
-
-	/**
 	 * Convert mode string to binary.
 	 * @access     private
 	 * @return     {string}  mode binary
 	 */
-	private stringToMode = (mode: string): string => {
+	private valueBinaryForMode = (mode: ModeType): string => {
 		switch (mode) {
 			case 'pollen':
-				return valueBinary.OPERATION_POLLEN;
-			case 'realization':
-				return valueBinary.OPERATION_REALIZE;
+				return ValueBinary.OPERATION_POLLEN;
+			case 'realize':
+				return ValueBinary.OPERATION_REALIZE;
 			case 'ai_auto':
-				return valueBinary.OPERATION_AI_AUTO;
+				return ValueBinary.OPERATION_AI_AUTO;
 			case 'auto':
-				return valueBinary.OPERATION_AUTO;
+				return ValueBinary.OPERATION_AUTO;
 			case 'night':
-				return valueBinary.OPERATION_NIGHT;
+				return ValueBinary.OPERATION_NIGHT;
 			case 'silent':
-				return valueBinary.OPERATION_SILENT;
+				return ValueBinary.OPERATION_SILENT;
 			case 'medium':
-				return valueBinary.OPERATION_MEDIUM;
+				return ValueBinary.OPERATION_MEDIUM;
 			case 'high':
-				return valueBinary.OPERATION_HIGH;
+				return ValueBinary.OPERATION_HIGH;
 			default:
 				return '';
 		}
@@ -85,12 +65,10 @@ export class Purifier extends Device {
 
 	/**
 	 * Change mode.
-	 * @param      {modeType}  mode  The mode to string
+	 * @param      {ModeType}  mode  The mode to string
 	 */
-	setMode(mode: modeType): void {
-		if (!mode || typeof mode !== 'string') throw new Error('invalid parameter');
-
-		const _mode: string = this.stringToMode(mode);
+	setMode(mode: ModeType): void {
+		const _mode: string = this.valueBinaryForMode(mode);
 
 		if (_mode) {
 			this.queuePropertyStatusUpdate({
@@ -116,21 +94,21 @@ export class Purifier extends Device {
 		const modeNum = this.chunkState(state.valueBinary.code)[4];
 
 		switch (modeNum) {
-			case modeCode.AI_AUTO:
+			case ModeCode.AI_AUTO:
 				return 'ai_auto';
-			case modeCode.AUTO:
+			case ModeCode.AUTO:
 				return 'auto';
-			case modeCode.POLLEN:
+			case ModeCode.POLLEN:
 				return 'pollen';
-			case modeCode.NIGHT:
+			case ModeCode.NIGHT:
 				return 'night';
-			case modeCode.REALIZE:
+			case ModeCode.REALIZE:
 				return 'realize';
-			case modeCode.SILENT:
+			case ModeCode.SILENT:
 				return 'silent';
-			case modeCode.MEDIUM:
+			case ModeCode.MEDIUM:
 				return 'medium';
-			case modeCode.HIGH:
+			case ModeCode.HIGH:
 				return 'high';
 			default:
 				return '';
@@ -143,7 +121,7 @@ export class Purifier extends Device {
 	startHumidity(): void {
 		this.queuePropertyStatusUpdate({
 			valueBinary: {
-				code: valueBinary.HUMIDITY_ON,
+				code: ValueBinary.HUMIDITY_ON,
 			},
 			statusCode: StatusCode.OPERATION_MODE,
 			valueType: ValueType.BINARY,
@@ -156,7 +134,7 @@ export class Purifier extends Device {
 	stopHumidity(): void {
 		this.queuePropertyStatusUpdate({
 			valueBinary: {
-				code: valueBinary.HUMIDITY_OFF,
+				code: ValueBinary.HUMIDITY_OFF,
 			},
 			statusCode: StatusCode.OPERATION_MODE,
 			valueType: ValueType.BINARY,
